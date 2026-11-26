@@ -228,7 +228,7 @@ footer{border-top:1px solid var(--line);padding:48px 20px calc(36px + env(safe-a
 
   <!-- FOUR PAGES -->
   <section id="explore">
-    <h2>Explore</h2>
+    <h2>Explore FXRE</h2>
     <div class="tiles">
       <a class="tile" href="about.html"><b>FXRE</b><span>Who the fuck is FXRE ?</span></a>
       <a class="tile" href="music.html"><b>Music</b><span>Listen to FXRE</span></a>
@@ -269,7 +269,7 @@ footer{border-top:1px solid var(--line);padding:48px 20px calc(36px + env(safe-a
 
 <script>
 (function(){
-  var sel='#latest .cover,#latest .project>div:last-child,#explore h2,.tile,.foot>div,.big,.fine';
+  var sel='#latest .cover,#latest .project>div:last-child,#explore h2,.tile,.foot>div,.big';
   var els=[].slice.call(document.querySelectorAll(sel));
   els.forEach(function(el){
     el.classList.add('reveal');
@@ -281,6 +281,7 @@ footer{border-top:1px solid var(--line);padding:48px 20px calc(36px + env(safe-a
     entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
   },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
   els.forEach(function(el){io.observe(el)});
+  window.addEventListener('scroll',function(){if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4)els.forEach(function(el){el.classList.add('in')});},{passive:true});
 })();
 </script>
 
