@@ -5,6 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Music · FXRE</title>
 <meta name="description" content="Listen to FXRE: JACKIE and every release, on every platform.">
+<!-- Share preview (WhatsApp, Instagram, X, iMessage) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FXRE">
+<meta property="og:title" content="Music · FXRE">
+<meta property="og:description" content="Listen to FXRE: JACKIE and every release, on every platform.">
+<meta property="og:url" content="https://fxreonly.github.io/FXRESZN/music.html">
+<meta property="og:image" content="https://fxreonly.github.io/FXRESZN/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Music · FXRE">
+<meta name="twitter:description" content="Listen to FXRE: JACKIE and every release, on every platform.">
+<meta name="twitter:image" content="https://fxreonly.github.io/FXRESZN/og-image.jpg">
 <meta name="theme-color" content="#08070b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -105,6 +118,7 @@ header{position:sticky;top:0;z-index:20;background:rgba(8,7,11,.92);backdrop-fil
 /* music page */
 main.page{min-height:60vh}
 main.page section{padding-top:72px}
+.spotify-embed{max-width:1200px;margin:0 auto;padding-left:20px;padding-right:20px}
 
 /* sections */
 section{max-width:1200px;margin:auto;padding:84px 20px}
@@ -224,11 +238,17 @@ footer{border-top:1px solid var(--line);padding:48px 20px calc(36px + env(safe-a
       </ul>
     </div>
   </section>
+
+  <!-- SPOTIFY PLAYER -->
+  <section class="spotify-embed">
+    <iframe title="FXRE on Spotify" style="border-radius:12px;border:0;display:block" src="https://open.spotify.com/embed/track/1DrkJsWrxin7RBgJH7j0Mh?utm_source=generator&si=62ef7c35012847fe" width="100%" height="352" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </section>
 </main>
 
 <footer>
   <div class="foot">
     <div><h3>Pages</h3><ul><li><a href="about.html">About</a></li><li><a href="music.html">Music</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="index.html#explore">Merch</a></li></ul></div>
+    <div><h3>Contact</h3><ul><li><a href="mailto:fxreszn@gmail.com">fxreszn@gmail.com</a></li></ul></div>
     <div>
       <h3>Follow</h3>
       <!-- Social links use the @fxreszn username -->
@@ -282,6 +302,17 @@ footer{border-top:1px solid var(--line);padding:48px 20px calc(36px + env(safe-a
   menu.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
   document.addEventListener('click',function(e){if(!menu.contains(e.target))set(false);});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'){set(false);btn.focus();}});
+})();
+</script>
+
+<script>
+(function(){
+  // Visitor stats (GoatCounter): stats appear at fxre.goatcounter.com
+  var CODE='fxre';
+  if(!CODE)return;
+  var s=document.createElement('script');s.async=true;s.src='//gc.zgo.at/count.js';
+  s.setAttribute('data-goatcounter','https://'+CODE+'.goatcounter.com/count');
+  document.body.appendChild(s);
 })();
 </script>
 
