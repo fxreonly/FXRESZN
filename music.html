@@ -40,7 +40,7 @@
   --display:"Aldrich",Arial,sans-serif; --body:"Aldrich",Arial,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:70px}
+html{scroll-behavior:smooth;scroll-padding-top:110px}
 body{font-synthesis:none;background:var(--ink);color:var(--bone);font-family:var(--body);font-size:17px;line-height:1.55;
   padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);overflow-x:hidden}
 img{max-width:100%;display:block}
@@ -48,13 +48,13 @@ a{color:inherit;text-decoration:none}
 a:focus-visible,button:focus-visible{outline:2px solid var(--fire);outline-offset:3px}
 
 /* ticker */
-.ticker{background:#000;color:var(--fire);border-top:1px solid var(--fire);border-bottom:1px solid var(--fire);overflow:hidden;white-space:nowrap;font-weight:700;font-size:14px;padding:8px 0;padding-top:calc(8px + env(safe-area-inset-top))}
+.ticker{background:#000;color:var(--fire);border-top:1px solid var(--fire);border-bottom:1px solid var(--fire);overflow:hidden;white-space:nowrap;font-weight:700;font-size:12px;padding:5px 0}
 .ticker div{display:inline-block;animation:slide 30s linear infinite}
-.ticker span{margin:0 22px}
+.ticker span{margin:0 18px}
 @keyframes slide{to{transform:translateX(-50%)}}
 
 /* nav */
-header{position:sticky;top:0;z-index:20;background:rgba(8,7,11,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header{position:sticky;top:0;z-index:20;background:rgba(8,7,11,.92);backdrop-filter:blur(8px);padding-top:env(safe-area-inset-top)}
 .nav{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;gap:16px}
 .logo{font-family:var(--hero-font);font-weight:700;font-stretch:125%;font-size:20px;letter-spacing:0}
 .nav ul{display:flex;gap:26px;list-style:none;font-size:15px;color:var(--mute)}
@@ -193,12 +193,6 @@ footer{border-top:1px solid var(--line);padding:48px 20px calc(36px + env(safe-a
 </head>
 <body>
 
-<!-- TOP TICKER: edit the text, keep both copies identical so the loop looks seamless -->
-<div class="ticker"><div>
-  <span>FXRE · NEW MUSIC</span><span>PRESAVE JACKIE</span><span>FXRE · NEW MUSIC</span><span>PRESAVE JACKIE</span>
-  <span>FXRE · NEW MUSIC</span><span>PRESAVE JACKIE</span><span>FXRE · NEW MUSIC</span><span>PRESAVE JACKIE</span>
-</div></div>
-
 <header>
   <nav class="nav">
     <a class="logo" href="index.html">FXRE</a>
@@ -210,6 +204,11 @@ footer{border-top:1px solid var(--line);padding:48px 20px calc(36px + env(safe-a
     </ul>
     <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span></button>
   </nav>
+<!-- TOP TICKER: edit the text, keep both copies identical so the loop looks seamless -->
+<div class="ticker"><div>
+  <span>FXRE · NEW MUSIC</span><span>PRESAVE JACKIE</span><span>FXRE · NEW MUSIC</span><span>PRESAVE JACKIE</span>
+  <span>FXRE · NEW MUSIC</span><span>PRESAVE JACKIE</span><span>FXRE · NEW MUSIC</span><span>PRESAVE JACKIE</span>
+</div></div>
   <div id="site-menu" class="menu">
     <ul>
       <li><a href="index.html">Home</a></li>
