@@ -49,8 +49,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--fire);outline-offse
 
 /* ticker */
 .ticker{background:#000;color:var(--fire);border-top:1px solid var(--fire);border-bottom:1px solid var(--fire);overflow:hidden;white-space:nowrap;font-weight:700;font-size:12px;padding:5px 0}
-.ticker div{display:inline-block;animation:slide 30s linear infinite}
-.ticker span{margin:0 18px}
+.ticker div{display:flex;width:max-content;animation:slide var(--tdur,30s) linear infinite}
+.ticker span{margin:0 18px;flex:none}
 @keyframes slide{to{transform:translateX(-50%)}}
 
 /* nav */
@@ -194,7 +194,7 @@ footer{border-top:1px solid var(--line);padding:48px 20px calc(36px + env(safe-a
     </ul>
     <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span></button>
   </nav>
-<!-- TOP TICKER: edit the text, keep both copies identical so the loop looks seamless -->
+<!-- TOP TICKER: edit the text below; the script at the bottom repeats it to fill any screen width so the loop never has a gap -->
 <div class="ticker"><div>
   <span>FXRE · NEW MUSIC</span><span>PRESAVE JACKIE</span><span>FXRE · NEW MUSIC</span><span>PRESAVE JACKIE</span>
   <span>FXRE · NEW MUSIC</span><span>PRESAVE JACKIE</span><span>FXRE · NEW MUSIC</span><span>PRESAVE JACKIE</span>
@@ -297,5 +297,24 @@ footer{border-top:1px solid var(--line);padding:48px 20px calc(36px + env(safe-a
 })();
 </script>
 
+<script>
+(function(){
+  var t=document.querySelector('.ticker div');
+  if(!t)return;
+  var unit=t.innerHTML,timer;
+  function build(){
+    t.innerHTML=unit;
+    var w=t.scrollWidth;
+    if(!w)return;
+    var reps=Math.max(1,Math.ceil(window.innerWidth/w)),half='',i;
+    for(i=0;i<reps;i++)half+=unit;
+    t.innerHTML=half+half;
+    t.style.setProperty('--tdur',(w*reps/22)+'s');
+  }
+  build();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(build);
+  window.addEventListener('resize',function(){clearTimeout(timer);timer=setTimeout(build,200)});
+})();
+</script>
 </body>
 </html>
