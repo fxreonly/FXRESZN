@@ -59,6 +59,14 @@ header{position:sticky;top:0;z-index:20;background:rgba(8,7,11,.92);backdrop-fil
 .logo{font-family:var(--hero-font);font-weight:700;font-stretch:125%;font-size:20px;letter-spacing:0}
 .nav ul{display:flex;gap:28px;list-style:none;font-size:13px;color:var(--mute);margin-left:auto;margin-right:8px;text-transform:uppercase;letter-spacing:.14em}
 .nav ul a:hover{color:var(--bone)}
+.nav ul a{position:relative;display:inline-block;padding:6px 0;transition:color .2s}
+.nav ul a::after{content:"";position:absolute;left:0;right:.14em;bottom:-6px;height:2px;background:var(--fire);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nav ul a.current{color:var(--bone)}
+.nav ul a.current::after{transform:scaleX(1)}
+/* red glow that follows the cursor (mouse devices only; sits behind the page content) */
+.glow{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .6s;background:radial-gradient(560px circle at var(--mx,50%) var(--my,50%),rgba(229,25,43,.20),rgba(150,12,28,.09) 45%,transparent 72%)}
+.glow.on{opacity:1}
+@media(hover:none),(prefers-reduced-motion:reduce){.glow{display:none}}
 /* menu button + dropdown */
 .menu-btn{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:46px;height:46px;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--bone);cursor:pointer;flex:none;transition:border-color .2s,background .2s}
 .menu-btn:hover{border-color:var(--fire)}
@@ -192,13 +200,14 @@ footer{border-top:1px solid var(--line);padding:48px 20px calc(36px + env(safe-a
 </style>
 </head>
 <body>
+<div class="glow" aria-hidden="true"></div>
 
 <header>
   <nav class="nav">
     <a class="logo" href="index.html">FXRE</a>
     <ul>
       <li><a href="about.html">About</a></li>
-      <li><a href="music.html">Music</a></li>
+      <li><a href="music.html" class="current" aria-current="page">Music</a></li>
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="index.html#explore">Merch</a></li>
     </ul>
@@ -335,6 +344,25 @@ footer{border-top:1px solid var(--line);padding:48px 20px calc(36px + env(safe-a
   build();
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(build);
   window.addEventListener('resize',function(){clearTimeout(timer);timer=setTimeout(build,200)});
+})();
+</script>
+<script>
+(function(){
+  var g=document.querySelector('.glow');
+  if(!g||!window.matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  var x=0,y=0,tx=0,ty=0,raf=0,seen=false;
+  function tick(){
+    x+=(tx-x)*.12;y+=(ty-y)*.12;
+    g.style.setProperty('--mx',x+'px');g.style.setProperty('--my',y+'px');
+    raf=(Math.abs(tx-x)>.5||Math.abs(ty-y)>.5)?requestAnimationFrame(tick):0;
+  }
+  addEventListener('pointermove',function(e){
+    tx=e.clientX;ty=e.clientY;
+    if(!seen){x=tx;y=ty;seen=true}
+    g.classList.add('on');
+    if(!raf)raf=requestAnimationFrame(tick);
+  },{passive:true});
+  document.documentElement.addEventListener('mouseleave',function(){g.classList.remove('on')});
 })();
 </script>
 </body>
